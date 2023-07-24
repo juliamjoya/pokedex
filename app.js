@@ -32,7 +32,7 @@ function mostrarListaPokemon() {
         card.classList.add('card');
         card.style.width = '18rem';
         card.innerHTML = `
-            <div class="card-body">
+            <div class="card-body text-center">
                 <img src="${pokemon.thumbnailImage}">
                 <h5 class="card-title">${pokemon.name}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">${pokemon.type.join(', ')}</h6>
@@ -75,8 +75,15 @@ function mostrarDetallesPokemon(id) {
 
 // Función para buscar Pokémon por nombre
 function buscarPokemon(name) {
+    let inputBusqueda = document.getElementById("buscador-pokemon");
     let filteredList = listaPokemon.filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
 
-    listaPokemon = filteredList;
-    mostrarListaPokemon(filteredList);
+    if (filteredList != ''){
+        listaPokemon = filteredList;
+        mostrarListaPokemon(filteredList);
+    }
+
+    if(inputBusqueda.value == ''){
+        location.reload();
+    }
 }
